@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diego Armando Maradona - D10S</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Audio Control */
+        .audio-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 10px 15px;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .audio-control:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+        }
+
+        .audio-control span {
+            font-size: 20px;
+        }
+
+        /* Header Hero */
+        header {
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, transparent 100%), 
+                        url('./images/maradona7.png') center/cover;
+            background-attachment: fixed;
+            background-color: #1e3c72;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            animation: slideInDown 1s ease-out;
+            z-index: 2;
+            filter: drop-shadow(0 0 30px rgba(255, 215, 0, 0.5));
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 
+                         0 0 60px rgba(255, 165, 0, 0.6),
+                         3px 3px 15px rgba(0, 0, 0, 0.8);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            animation: fadeInScale 1.2s ease-out, glitch 0.5s ease-out 1.3s;
+            color: #fff;
+        }
+
+        .hero-content p {
+            font-size: 1.8rem;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6),
+                         2px 2px 15px rgba(0, 0, 0, 0.8);
+            margin-bottom: 30px;
+            animation: fadeInUp 1.5s ease-out;
+            color: #fff;
+        }
+
+        .d10s-badge {
+            display: inline-block;
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: none;
+            animation: pulse 2s infinite, bounce 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.6));
+        }
+
+        /* Animazioni */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Nuove Animazioni */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.3), 0 0 20px rgba(255, 215, 0, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 215, 0, 0.3);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -2000px 0;
+            }
+            100% {
+                background-position: 2000px 0;
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            25% {
+                transform: translateY(-10px);
+            }
+            75% {
+                transform: translateY(10px);
+            }
+        }
+
+        @keyframes rotate3d {
+            0% {
+                transform: rotateX(0) rotateY(0);
+            }
+            100% {
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        @keyframes glitch {
+            0%, 100% {
+                text-shadow: -3px 0 #FFD700, 3px 0 #FFA500;
+                transform: translate(0);
+            }
+            20% {
+                text-shadow: -3px 0 #FFD700, 3px 0 #FFA500;
+                transform: translate(-3px, 3px);
+            }
+            40% {
+                text-shadow: -3px 0 #FFD700, 3px 0 #FFA500;
+                transform: translate(-3px, -3px);
+            }
+            60% {
+                text-shadow: -3px 0 #FFD700, 3px 0 #FFA500;
+                transform: translate(3px, 3px);
+            }
+            80% {
+                text-shadow: -3px 0 #FFD700, 3px 0 #FFA500;
+                transform: translate(3px, -3px);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            10%, 30%, 50%, 70%, 90% {
+                transform: translateX(-5px);
+            }
+            20%, 40%, 60%, 80% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* Container principale */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Sezioni */
+        section {
+            margin: 80px 0;
+            animation: fadeIn 1s ease-out;
+        }
+
+        section h2 {
+            font-size: 2.8rem;
+            color: white;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 20px;
+            animation: bounce 2s infinite;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #FFD700, #FFA500);
+            border-radius: 2px;
+            animation: shimmer 2s infinite;
+            box-shadow: 0 0 15px #FFD700;
+        }
+
+        /* Biografia */
+        .biografia {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .biografia-text {
+            animation: slideInLeft 1s ease-out;
+            color: white;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .biografia-text p {
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .biografia-text p:hover {
+            color: #FFD700;
+            padding-left: 10px;
+        }
+
+        .biografia-img {
+            animation: slideInRight 1s ease-out;
+        }
+
+        .biografia-img img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .biografia-img img:hover {
+            transform: scale(1.08);
+            box-shadow: 0 15px 60px rgba(255, 215, 0, 0.6);
+            filter: brightness(1.1);
+        }
+
+        /* Caratteristiche */
+        .caratteristiche-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .caratteristica-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .caratteristica-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        .caratteristica-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.5);
+            border: 2px solid #FFD700;
+        }
+
+        .caratteristica-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+            display: inline-block;
+        }
+
+        .caratteristica-card h3 {
+            color: #1e3c72;
+            margin-bottom: 12px;
+            font-size: 1.4rem;
+            transition: all 0.3s ease;
+        }
+
+        .caratteristica-card:hover h3 {
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .caratteristica-card p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.1) rotate(2deg);
+            box-shadow: 0 15px 50px rgba(255, 215, 0, 0.6);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+            filter: brightness(0.9) contrast(1.1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.2) rotate(-2deg);
+            filter: brightness(1.2) contrast(1.3);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.5), transparent);
+            padding: 20px;
+            color: white;
+            transform: translateY(100%);
+            transition: all 0.4s ease;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+            animation: slideInUp 0.4s ease-out;
+        }
+
+        /* Statistiche */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.8s ease-out;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent);
+            animation: rotate3d 4s linear infinite;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.6);
+            background: rgba(255, 255, 255, 1);
+            border: 2px solid #FFD700;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #1e3c72;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover .stat-number {
+            color: #FFD700;
+            font-size: 3rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover .stat-label {
+            color: #1e3c72;
+            font-weight: bold;
+        }
+
+        /* Palmarès */
+        .trophies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .trophy {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 0.8s ease-out;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trophy::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 215, 0, 0.2), transparent 70%);
+            transform: translateX(-100%);
+            animation: shimmer 3s infinite;
+        }
+
+        .trophy:hover {
+            transform: translateY(-12px) rotate(5deg) scale(1.08);
+            box-shadow: 0 20px 50px rgba(255, 215, 0, 0.6);
+            border: 2px solid #FFD700;
+            background: linear-gradient(135deg, #fff, #fffacd);
+        }
+
+        .trophy-icon {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            animation: bounce 2s infinite;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .trophy:hover .trophy-icon {
+            animation: spin 0.6s ease-in-out;
+            font-size: 4rem;
+        }
+
+        .trophy h3 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trophy:hover h3 {
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+            border-top: 4px solid #FFD700;
+            border-top-style: dashed;
+            animation: glow 3s infinite;
+        }
+
+        footer h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: #FFD700;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            animation: bounce 2s infinite;
+        }
+
+        footer p {
+            margin: 10px 0;
+            opacity: 0.9;
+            transition: all 0.3s ease;
+        }
+
+        footer p:hover {
+            color: #FFD700;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            transform: scale(1.02);
+        }
+
+        /* Particle Background */
+        .particle {
+            position: fixed;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+
+            .biografia {
+                grid-template-columns: 1fr;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+
+            .caratteristiche-grid,
+            .stats-grid,
+            .trophies {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll Effect */
+        .fade-in-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Audio Control -->
+    <div class="audio-control" id="audioControl">
+        <span id="audioIcon">🎵</span>
+        <span id="audioText">Play</span>
+    </div>
+    <audio id="backgroundAudio" preload="metadata">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Header Hero -->
+    <header>
+        <div class="hero-content">
+            <h1>DIEGO ARMANDO MARADONA</h1>
+            <p>Il Dio del Calcio</p>
+            <div class="d10s-badge">D10S</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Biografia -->
+        <section class="fade-in-on-scroll">
+            <h2>La Leggenda</h2>
+            <div class="biografia">
+                <div class="biografia-text">
+                    <p>
+                        <strong>Diego Armando Maradona</strong> (Lanús, 30 ottobre 1960 – Tigre, 25 novembre 2020) è stato un 
+                        calciatore argentino considerato da molti il più grande giocatore di calcio di tutti i tempi.
+                    </p>
+                    <p>
+                        Con le sue abilità tecniche straordinarie, la sua visione di gioco e il suo carisma, Maradona ha trascinato 
+                        l'Argentina alla vittoria del Mondiale 1986, uno dei trionfi più importanti della storia del calcio. È stato 
+                        il fulcro del gioco argentino durante gli anni '80 e '90, vincendo numerosi titoli sia con i club che con la nazionale.
+                    </p>
+                    <p>
+                        Cresciuto nelle strade di Villa Fiorito, uno dei quartieri più poveri di Buenos Aires, Maradona è riuscito a 
+                        emergere come uno dei talenti più promettenti del calcio mondiale fin da giovane. La sua determinazione, il 
+                        suo spirito combattivo e la sua passione per il gioco lo hanno reso una figura iconica non solo dello sport 
+                        ma della cultura globale.
+                    </p>
+                </div>
+                <div class="biografia-img">
+                    <img src="./images/maradona1.png" alt="Diego Maradona">
+                </div>
+            </div>
+        </section>
+
+        <!-- Caratteristiche Principali -->
+        <section class="fade-in-on-scroll">
+            <h2>Caratteristiche Principali</h2>
+            <div class="caratteristiche-grid">
+                <div class="caratteristica-card">
+                    <div class="caratteristica-icon">⚽</div>
+                    <h3>Tecnica Straordinaria</h3>
+                    <p>
+                        Controllo di palla incomparabile, dribbling fluido e preciso. Maradona poteva destro che sinistro con 
+                        la stessa abilità, rendendo imprevedibile ogni sua mossa.
+                    </p>
+                </div>
+
+                <div class="caratteristica-card">
+                    <div class="caratteristica-icon">👁️</div>
+                    <h3>Visione di Gioco</h3>
+                    <p>
+                        Capacità tattica eccezionale di leggere il gioco prima degli altri. Passava magistrali ai compagni e 
+                        vedeva opportunità che nessun altro scorgeva.
+                    </p>
+                </div>
+
+                <div class="caratteristica-card">
+                    <div class="caratteristica-icon">💪</div>
+                    <h3>Forza e Fisicità</h3>
+                    <p>
+                        Nonostante la bassa statura (165 cm), possedeva una forza fisica straordinaria e una resistenza 
+                        incredibile nel gioco di squadra.
+                    </p>
+                </div>
+
+                <div class="caratteristica-card">
+                    <div class="caratteristica-icon">🎯</div>
+                    <h3>Precisione nel Tiro</h3>
+                    <p>
+                        Tiri potenti e precisi da qualsiasi posizione. La sua capacità di segnare era devastante, specialmente 
+                        in situazioni critiche e di pressione.
+                    </p>
+                </div>
+
+                <div class="caratteristica-card">
+                    <div class="caratteristica-icon">🔥</div>
+                    <h3>Carisma e Passione</h3>
+                    <p>
+                        Leader naturale che trascinava la squadra con il suo esempio. La sua passione contagiava i compagni 
+                        e terrorizzava gli avversari.
+                    </p>
+                </div>
+
+                <div class="caratteristica-card">
+                    <div class="caratteristica-icon">🏆</div>
+                    <h3>Mentalità Vincente</h3>
+                    <p>
+                        Capacità di fare la differenza nei momenti cruciali. Non si arrendeva mai e riusciva sempre a trovare 
+                        una soluzione quando tutto sembraba impossibile.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Galleria Foto -->
+        <section class="fade-in-on-scroll">
+            <h2>Momenti Indimenticabili</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="./images/maradona1.png" alt="Maradona Mondiale 1986">
+                    <div class="gallery-overlay">Campione del Mondo 1986</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/maradona2.png" alt="Maradona Napoli">
+                    <div class="gallery-overlay">El Pibe d'Oro a Napoli</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/maradona3.png" alt="Maradona Argentina">
+                    <div class="gallery-overlay">Orgoglio Argentino</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/maradona4.png" alt="Maradona Dribbling">
+                    <div class="gallery-overlay">Dribbling Magistrale</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/maradona5.png" alt="Maradona Ritratto">
+                    <div class="gallery-overlay">La Leggenda</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="./images/maradona6.png" alt="Giovane Maradona">
+                    <div class="gallery-overlay">Il Prodigio Giovane</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistiche Cariera -->
+        <section class="fade-in-on-scroll">
+            <h2>Statistiche di Carriera</h2>
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-number">759</div>
+                    <div class="stat-label">Partite Giocate</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">345</div>
+                    <div class="stat-label">Gol Segnati</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Mondiale Vinto</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Coppe America</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">91</div>
+                    <div class="stat-label">Gol in Nazionale</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">Infiniti</div>
+                    <div class="stat-label">Ricordi Immortali</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Palmarès -->
+        <section class="fade-in-on-scroll">
+            <h2>Trofei e Riconoscimenti</h2>
+            <div class="trophies">
+                <div class="trophy">
+                    <div class="trophy-icon">🏆</div>
+                    <h3>Mondiale 1986</h3>
+                    <p>Messico - Vittoria Epica</p>
+                </div>
+                <div class="trophy">
+                    <div class="trophy-icon">🥇</div>
+                    <h3>Copa America 1987-1993</h3>
+                    <p>Due vittorie con l'Argentina</p>
+                </div>
+                <div class="trophy">
+                    <div class="trophy-icon">⭐</div>
+                    <h3>Pallone d'Oro 1990</h3>
+                    <p>Riconoscimento mondiale</p>
+                </div>
+                <div class="trophy">
+                    <div class="trophy-icon">👑</div>
+                    <h3>Capocannoniere</h3>
+                    <p>Mondiale 1986 - 6 gol</p>
+                </div>
+                <div class="trophy">
+                    <div class="trophy-icon">🎖️</div>
+                    <h3>Leggende del Calcio</h3>
+                    <p>FIFA 100 - 2004</p>
+                </div>
+                <div class="trophy">
+                    <div class="trophy-icon">🌟</div>
+                    <h3>Scudetto Napoli</h3>
+                    <p>Tre volte campione d'Italia</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eredità -->
+        <section class="fade-in-on-scroll">
+            <h2>L'Eredità Immortale</h2>
+            <div class="biografia-text" style="background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 15px; color: #333;">
+                <p>
+                    L'eredità di Diego Armando Maradona va ben oltre i numeri e i trofei. Ha rappresentato il calcio come arte, 
+                    come espressione di libertà e creatività. Ha dimostrato che un uomo di statura piccola poteva dominare i più grandi 
+                    e i più forti.
+                </p>
+                <p>
+                    Maradona ha portato il Napoli da una città sofferente ai vertici europei, è diventato una figura simbolica 
+                    per milioni di persone in tutto il mondo. Non era solo un giocatore, era un'ispirazione, una leggenda vivente 
+                    che ha calpestato i campi di gioco per além due decenni.
+                </p>
+                <p>
+                    La sua morte il 25 novembre 2020 ha provocato un lutto globale, testimonianza dell'amore e del rispetto che 
+                    il mondo aveva per lui. Ma Maradona vive eternamente nei cuori dei tifosi, nei video dei suoi gol memorabili, 
+                    nelle storie di coloro che lo hanno ammirato.
+                </p>
+                <p style="text-align: center; font-size: 1.3rem; color: #1e3c72; margin-top: 20px;">
+                    <strong>D10S VIVE ETERNAMENTE 🙏</strong>
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h3>Diego Armando Maradona</h3>
+        <p>30 Ottobre 1960 - 25 Novembre 2020</p>
+        <p>Un Uomo, Una Leggenda, Un Dio del Calcio</p>
+        <p style="margin-top: 20px; opacity: 0.7;">© 2024 Tributo a Diego Armando Maradona - D10S</p>
+    </footer>
+
+    <script>
+        // Audio Control
+        const audioControl = document.getElementById('audioControl');
+        const audio = document.getElementById('backgroundAudio');
+        const audioIcon = document.getElementById('audioIcon');
+        const audioText = document.getElementById('audioText');
+        let isPlaying = false;
+
+        // Alternative music source (since we can't use Life is Life copyrighted)
+        // Using a royalty-free energetic song
+        audio.src = 'https://files.freemusicarchive.org/music/Bensound/Epic/Bensound_Epic.mp3';
+
+        audioControl.addEventListener('click', function() {
+            if (isPlaying) {
+                audio.pause();
+                audioIcon.textContent = '🔇';
+                audioText.textContent = 'Play';
+                isPlaying = false;
+            } else {
+                audio.play().catch(e => {
+                    console.log('Autoplay prevented:', e);
+                });
+                audioIcon.textContent = '🔊';
+                audioText.textContent = 'Pause';
+                isPlaying = true;
+            }
+        });
+
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Particelle animate 🎇
+        function createParticles() {
+            const particleCount = 50;
+            const symbols = ['⚽', '👑', '🏆', '⭐', '💛', '🎯'];
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.fontSize = Math.random() * 20 + 10 + 'px';
+                particle.style.animation = `float ${3 + Math.random() * 3}s ease-in-out infinite`;
+                particle.style.animationDelay = Math.random() * 2 + 's';
+                document.body.appendChild(particle);
+            }
+        }
+        
+        // Effetto glow seguente il mouse
+        document.addEventListener('mousemove', function(e) {
+            const elements = document.querySelectorAll('.caratteristica-card, .stat-box, .trophy, .gallery-item');
+            elements.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                const elCenterX = rect.left + rect.width / 2;
+                const elCenterY = rect.top + rect.height / 2;
+                const distance = Math.sqrt((e.clientX - elCenterX) ** 2 + (e.clientY - elCenterY) ** 2);
+                
+                if (distance < 300) {
+                    const intensity = (1 - distance / 300) * 0.6;
+                    el.style.boxShadow = `0 0 ${30 + intensity * 50}px rgba(255, 215, 0, ${intensity})`;
+                }
+            });
+        });
+
+        // Effetto di click - onde luminose
+        document.addEventListener('click', function(e) {
+            const circle = document.createElement('div');
+            circle.style.position = 'fixed';
+            circle.style.left = e.clientX + 'px';
+            circle.style.top = e.clientY + 'px';
+            circle.style.width = '20px';
+            circle.style.height = '20px';
+            circle.style.borderRadius = '50%';
+            circle.style.border = '2px solid #FFD700';
+            circle.style.pointerEvents = 'none';
+            circle.style.zIndex = '9999';
+            circle.style.animation = 'pulse 0.6s ease-out forwards';
+            document.body.appendChild(circle);
+            
+            setTimeout(() => circle.remove(), 600);
+        });
+
+        // Effetto parallax scrolling
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('header');
+            if (hero) {
+                hero.style.backgroundPosition = `center ${scrolled * 0.5}px`;
+            }
+        });
+
+        // Inizializzazione
+        createParticles();
+
+        // Effetto di testo che cambia colore su hover per le sezioni
+        document.addEventListener('DOMContentLoaded', function() {
+            const headings = document.querySelectorAll('section h2');
+            headings.forEach(heading => {
+                heading.addEventListener('mouseenter', function() {
+                    this.style.color = '#FFD700';
+                    this.style.filter = 'drop-shadow(0 0 20px rgba(255, 215, 0, 0.8))';
+                });
+                heading.addEventListener('mouseleave', function() {
+                    this.style.color = 'white';
+                    this.style.filter = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
